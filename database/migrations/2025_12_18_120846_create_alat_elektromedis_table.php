@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('alat_elektromedis', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode_alat', 50)->unique();
+            $table->string('nama_alat', 100);
+            $table->string('jenis_alat', 50);
+            $table->string('lokasi', 100);
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('alat_elektromedis');
+    }
+};
